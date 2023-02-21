@@ -1,12 +1,12 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactSlice';
-import { contactSelector } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContact } from '../../redux/selectors';
 import { Label, Input, Button, FormContainer } from './Form.styled';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const { contacts } = useSelector(contactSelector);
+  const { contacts } = useSelector(selectContact);
 
   const handleSubmit = event => {
     event.preventDefault();
