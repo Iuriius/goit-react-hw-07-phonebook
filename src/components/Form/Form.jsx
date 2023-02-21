@@ -1,12 +1,12 @@
 import toast, { Toaster } from 'react-hot-toast';
+import { Label, Input, Button, FormContainer } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/operations';
 import { selectContact } from '../../redux/selectors';
-import { Label, Input, Button, FormContainer } from './Form.styled';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const { contacts } = useSelector(selectContact);
+  const contacts = useSelector(selectContact);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -17,7 +17,7 @@ export const Form = () => {
     if (contacts.some(item => item.name === name)) {
       return toast.error(`${name} is already in contacts`);
     }
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 

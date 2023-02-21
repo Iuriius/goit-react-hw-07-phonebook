@@ -12,7 +12,7 @@ const useFilterArray = (array, filter) => {
 };
 
 export const ContactsList = () => {
-  const { contacts } = useSelector(selectContact);
+  const contacts = useSelector(selectContact);
   const { filter } = useSelector(selectFilter);
   const contactsList = useFilterArray(contacts, filter);
 
