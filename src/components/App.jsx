@@ -1,13 +1,21 @@
 import { Section, Title } from './App.styled';
 import { Toaster } from 'react-hot-toast';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form } from './Form/Form';
 import { Filter } from './Filter/Filter';
 import { ContactsList } from './ContactsList/ContactsList';
-import { contactSelector } from '../redux/selectors';
+import { useEffect } from 'react';
+import { fetchContacts } from '../redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
 
 export const App = () => {
-  const { contacts } = useSelector(contactSelector);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>
@@ -19,13 +27,12 @@ export const App = () => {
         <Form />
       </Section>
       <Section>
-        {!!contacts.length && (
-          <>
-            <Title>Contacts</Title>
-            <Filter />
-            <ContactsList />
-          </>
-        )}
+        {isLoading && !error && <b>Please wait...</b>}
+        <>
+          <Title>Contacts</Title>
+          <Filter />
+          <ContactsList />
+        </>
       </Section>
     </>
   );
