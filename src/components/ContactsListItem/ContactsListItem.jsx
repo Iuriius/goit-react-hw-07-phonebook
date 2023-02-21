@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 import {
   ContactItem,
   ContactName,
   ContactNumber,
   Button,
 } from './ContactsListItem.styled';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/operations';
 
@@ -17,17 +17,20 @@ export const ContactsListItem = ({ contacts }) => {
 
   return (
     <>
-      {contacts.map(contact => (
-        <ContactItem key={contact.id}>
-          <ContactName>
-            {contact.name[0].toUpperCase() + contact.name.substring(1)}:
-            <ContactNumber>{contact.number}</ContactNumber>
-          </ContactName>
-          <Button onClick={() => handleDeleteContact(contact.id)}>
-            Delete
-          </Button>
-        </ContactItem>
-      ))}
+      {contacts.length &&
+        contacts.map(contact => (
+          <ContactItem key={contact.id}>
+            <ContactName>
+              {contact.name}:<ContactNumber>{contact.phone}</ContactNumber>
+            </ContactName>
+            <Button
+              type="button"
+              onClick={() => handleDeleteContact(contact.id)}
+            >
+              Delete
+            </Button>
+          </ContactItem>
+        ))}
     </>
   );
 };
@@ -35,3 +38,13 @@ export const ContactsListItem = ({ contacts }) => {
 ContactsListItem.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.shape),
 };
+
+// <ContactItem key={contact.id}>
+//             <ContactName>
+//               {contact.name[0].toUpperCase() + contact.name.substring(1)}:
+//               <ContactNumber>{contact.number}</ContactNumber>
+//             </ContactName>
+//             <Button onClick={() => handleDeleteContact(contact.id)}>
+//               Delete
+//             </Button>
+//           </ContactItem>
