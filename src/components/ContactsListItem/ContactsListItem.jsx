@@ -38,13 +38,3 @@ export const ContactsListItem = ({ contacts }) => {
 ContactsListItem.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.shape),
 };
-
-// <ContactItem key={contact.id}>
-//             <ContactName>
-//               {contact.name[0].toUpperCase() + contact.name.substring(1)}:
-//               <ContactNumber>{contact.number}</ContactNumber>
-//             </ContactName>
-//             <Button onClick={() => handleDeleteContact(contact.id)}>
-//               Delete
-//             </Button>
-//           </ContactItem>

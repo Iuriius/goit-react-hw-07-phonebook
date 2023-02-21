@@ -12,12 +12,12 @@ export const Form = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const form = event.target;
-    const { name, number } = Object.fromEntries(formData);
+    const { name, phone } = Object.fromEntries(formData);
 
     if (contacts.some(item => item.name === name)) {
       return toast.error(`${name} is already in contacts`);
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
     form.reset();
   };
 
@@ -42,7 +42,7 @@ export const Form = () => {
           Number
           <Input
             type="tel"
-            name="number"
+            name="phone"
             placeholder="Enter number 000-00-00"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
